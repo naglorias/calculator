@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        background: linear-gradient(90deg, #4b6cb7 0%, #182848 100%);
+      }
+      .calculator-container {
+        width: 580px;
+        height: 600px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 4rem;
+        background-color: #fff;
+        margin-top: 2rem;
+        overflow: hidden;
+      }
+      .row {
+        margin-top: -2rem;
+        width: 70%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+      }
+      .row button {
+        width: 130px;
+        height: 50px;
+        background: transparent;
+        outline: none;
+        font-size: 2.4em;
+        border: none;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      #show-calc {
+        width: 80%;
+        padding: 1rem;
+        font-size: 3em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator-container">
+      <input type="text" id="show-calc" disabled />
+      <div class="row">
+        <button value="1">1</button>
+        <button value="2">2</button>
+        <button value="3">3</button>
+        <button value="+" style="background-color: #4169e1">+</button>
+      </div>
+      <div class="row">
+        <button value="4">4</button>
+        <button value="5">5</button>
+        <button value="6">6</button>
+        <button value="-" style="background-color: #0abab5">-</button>
+      </div>
+      <div class="row">
+        <button value="7">7</button>
+        <button value="8">8</button>
+        <button value="9">9</button>
+        <button value="*" style="background-color: #89cff0">*</button>
+      </div>
+      <div class="row">
+        <button value=".">.</button>
+        <button value="0">0</button>
+        <button value="c">C</button>
+        <button value="/" style="background-color: #003153">/</button>
+      </div>
+      <div class="row">
+        <button value="=" style="background-color: #c2b280; width: 100%">
+          =
+        </button>
+      </div>
+    </div>
+  </body>
+  <script>
+    let display = document.getElementById("show-calc");
+    let buttonsValue = document.querySelectorAll("button");
+
+    buttonsValue.forEach((btn) => {
+      btn.onclick = (btn) => {
+        let checkValue = btn.target.value;
+        if (checkValue === "c") {
+          display.value = null;
+        } else if (checkValue === "=") {
+          if (display !== "") {
+            display.value = eval(display.value);
+          }
+        } else {
+          display.value += checkValue;
+        }
+      };
+    });
+  </script>
+</html>
